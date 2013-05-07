@@ -66,12 +66,7 @@ static NSDate *lastShotTaken;
 #pragma mark Screen Monitoring
 
 void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParameter) {
-<<<<<<< HEAD
-    
-//    NSDate* lastScreenUpdateReceived = [NSDate new];
-=======
 
->>>>>>> upstream/master
     
     Dioder_Screen_ColoursAppDelegate *self = (__bridge Dioder_Screen_ColoursAppDelegate *)userParameter;
     
@@ -106,11 +101,6 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
         return;
     
     CGImageRef screenShot = CGWindowListCreateImage(CGRectInfinite, kCGWindowListOptionOnScreenOnly, kCGNullWindowID, kCGWindowImageDefault);
-<<<<<<< HEAD
-//    CGImageRef screenShot = CGDisplayCreateImage(CGMainDisplayID());
-//    [lastShotTaken release];
-=======
->>>>>>> upstream/master
     lastShotTaken = [NSDate new];
     
     [self calculateColoursOfImage:screenShot];
@@ -203,13 +193,10 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
 
     [self sendColours];
     
-<<<<<<< HEAD
-//    if (!self.avoidRenderingIfPossible)
-//        [self setPreviewImageWithBitmapImageRep:[[NSBitmapImageRep alloc] initWithCIImage:ciImage]];
-=======
+
     if (!self.avoidRenderingIfPossible)
 		[self setPreviewImageWithBitmapImageRep:[[NSBitmapImageRep alloc] initWithCGImage:imageRef]];
->>>>>>> upstream/master
+
 }
 
 -(void)sendColours {
