@@ -45,7 +45,7 @@ static NSDate *lastShotTaken;
     [self portsChanged:nil];
     lastShotTaken = nil;
     
-    CGRegisterScreenRefreshCallback(screenDidUpdate, self);
+    CGRegisterScreenRefreshCallback(screenDidUpdate, (__bridge void *)(self));
 
 }
 
@@ -67,7 +67,7 @@ static NSDate *lastShotTaken;
 
 void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParameter) {
     
-    lastScreenUpdateReceived = [NSDate new];
+//    NSDate* lastScreenUpdateReceived = [NSDate new];
     
     Dioder_Screen_ColoursAppDelegate *self = (__bridge Dioder_Screen_ColoursAppDelegate *)userParameter;
     
@@ -102,8 +102,8 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
         return;
     
     CGImageRef screenShot = CGWindowListCreateImage(CGRectInfinite, kCGWindowListOptionOnScreenOnly, kCGNullWindowID, kCGWindowImageDefault);
-    CGImageRef screenShot = CGDisplayCreateImage(CGMainDisplayID());
-    [lastShotTaken release];
+//    CGImageRef screenShot = CGDisplayCreateImage(CGMainDisplayID());
+//    [lastShotTaken release];
     lastShotTaken = [NSDate new];
     
     [self calculateColoursOfImage:screenShot];
@@ -196,8 +196,8 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
 
     [self sendColours];
     
-    if (!self.avoidRenderingIfPossible)
-        [self setPreviewImageWithBitmapImageRep:[[NSBitmapImageRep alloc] initWithCIImage:ciImage]];
+//    if (!self.avoidRenderingIfPossible)
+//        [self setPreviewImageWithBitmapImageRep:[[NSBitmapImageRep alloc] initWithCIImage:ciImage]];
 }
 
 -(void)sendColours {
